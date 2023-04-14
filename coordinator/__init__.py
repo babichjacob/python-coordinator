@@ -153,16 +153,16 @@ def coordinator() -> Tuple[Responder[T], Requester[T]]:
     closed = Event()
     disconnected = Event()
 
-    pusher = Responder(
+    responder = Responder(
         _shared_future=shared_future,
         _closed=closed,
         _disconnected=disconnected,
     )
-    puller = Requester(
+    requester = Requester(
         _shared_future=shared_future,
         _closed=closed,
         _disconnected=disconnected,
         _waiters=0,
     )
 
-    return (pusher, puller)
+    return (responder, requester)
