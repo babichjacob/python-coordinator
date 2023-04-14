@@ -1,19 +1,8 @@
-from asyncio import (
-    FIRST_COMPLETED,
-    CancelledError,
-    Event,
-    Future,
-    create_task,
-    wait,
-)
+from asyncio import FIRST_COMPLETED, CancelledError, Event, Future, create_task, wait
 from dataclasses import dataclass
-from typing import AsyncIterator, Generic, TypeVar
+from typing import AsyncIterator, Generic, Tuple, TypeVar
 
-from option_and_result import (
-    NONE,
-    Option,
-    Some,
-)
+from option_and_result import NONE, Option, Some
 
 T = TypeVar("T")
 
@@ -159,8 +148,8 @@ class Requester(Generic[T]):
         self.close()
 
 
-def coordinator() -> tuple[Responder[T], Requester[T]]:
-    shared_future = MutableContainer(Future())
+def coordinator() -> Tuple[Responder[T], Requester[T]]:
+    shared_future: MutableContainer[Future[Future[T]]] = MutableContainer(Future())
     closed = Event()
     disconnected = Event()
 
