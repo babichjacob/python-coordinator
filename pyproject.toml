@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "babichjacob-coordinator"
-version = "0.1.0"
+version = "0.1.1"
 description = "A tool for coordinating producers and consumers of data"
 license = "MIT"
 authors = ["J or Jacob Babich <jacobbabichpublic+git@gmail.com>"]
